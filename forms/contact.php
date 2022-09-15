@@ -28,7 +28,7 @@
   $contact->smtp = array(
     'host' => 'stmp.gmail.com',
     'username' => 'yasser.ibouda@gmail.com',
-    'password' => 'Motorola60',
+    'password' => 'Motorola212$*60',
     'port' => '25'
   );
   
