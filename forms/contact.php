@@ -1,41 +1,18 @@
 <?php
-  /**
-  * Requires the "PHP Email Form" library
-  * The "PHP Email Form" library is available only in the pro version of the template
-  * The library should be uploaded to: vendor/php-email-form/php-email-form.php
-  * For more info and help: https://bootstrapmade.com/php-email-form/
-  */
+//get data from form  
+$name = $_POST['name'];
+$email= $_POST['email'];
+$objet= $_POST['subject'];
+$message= $_POST['message'];
 
-  // Replace contact@example.com with your real receiving email address
-  $receiving_email_address = 'yasser.ibouda@gmail.com';
-
-  if( file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php' )) {
-    include( $php_email_form );
-  } else {
-    die( 'Unable to load the "PHP Email Form" Library!');
-  }
-
-  $contact = new PHP_Email_Form;
-  $contact->ajax = true;
-  
-  $contact->to = $receiving_email_address;
-  $contact->from_name = $_POST['name'];
-  $contact->from_email = $_POST['email'];
-  $contact->subject = $_POST['subject'];
-
-  // Uncomment below code if you want to use SMTP to send emails. You need to enter your correct SMTP credentials
-  
-  $contact->smtp = array(
-    'host' => 'stmp.gmail.com',
-    'username' => 'yasser.ibouda@gmail.com',
-    'password' => 'Motorola212$*60',
-    'port' => '25'
-  );
-  
-
-  $contact->add_message( $_POST['name'], 'From');
-  $contact->add_message( $_POST['email'], 'Email');
-  $contact->add_message( $_POST['message'], 'Message', 10);
-
-  echo $contact->send();
+$to = "yasser.ibouda@gmail.com";
+$subject = "Mail From github";
+$txt ="Name = ". $name . "\r\n  Email = " . $email . "\r\n Message =" . $message . "\r\n Objet =" . $objet;
+$headers = "From: noreply@github.com" . "\r\n" .
+"CC: somebodyelse@example.com";
+if($email!=NULL){
+    mail($to,$subject,$txt,$headers);
+}
+//redirect
 ?>
+  
