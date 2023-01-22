@@ -1066,6 +1066,8 @@ a:hover {
 
 --------------------------------------------------------------*/
 
+
+
 .portfolio .portfolio-item {
   margin-bottom: 30px;
 }
@@ -1220,6 +1222,35 @@ a:hover {
 /*--------------------------------------------------------------
 # Portfolio Details
 --------------------------------------------------------------*/
+
+/* ---------------------------------------------
+Description images
+--------------------------------------------- */
+
+
+/* la déco */
+/* body{
+  background:#222;
+  margin:24px;
+  font-family:sans-serif;
+  font-size:21px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-gap:24px;
+  gap:24px;
+} */
+
+/* img{
+  max-width:100%;
+  height:auto;
+} */
+
+
+/* ---------------------------------------------
+Fin Description images
+--------------------------------------------- */
+
+
 .portfolio-details {
   padding-top: 40px;
 }
