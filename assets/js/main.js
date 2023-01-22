@@ -4,52 +4,6 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
-// filterImages("all");
-// function filterImages(c) {
-//   var x, i;
-//   x = document.getElementsByClassName("portfolio-item");
-//   if (c == "all") c = "";
-//   // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
-//   for (i = 0; i < x.length; i++) {
-//     w3RemoveClass(x[i], "show");
-//     if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
-//   }
-// }
-
-// // Show filtered elements
-// function w3AddClass(element, name) {
-//   var i, arr1, arr2;
-//   arr1 = element.className.split(" ");
-//   arr2 = name.split(" ");
-//   for (i = 0; i < arr2.length; i++) {
-//     if (arr1.indexOf(arr2[i]) == -1) {
-//       element.className += " " + arr2[i];
-//     }
-//   }
-// }
-
-// function w3RemoveClass(element, name) {
-//   var i, arr1, arr2;
-//   arr1 = element.className.split(" ");
-//   arr2 = name.split(" ");
-//   for (i = 0; i < arr2.length; i++) {
-//     while (arr1.indexOf(arr2[i]) > -1) {
-//       arr1.splice(arr1.indexOf(arr2[i]), 1);
-//     }
-//   }
-//   element.className = arr1.join(" ");
-// }
-
-// var btnContainer = document.getElementById("portfolio-flters");
-// var btns = btnContainer.getElementsByTagName("li");
-// for (var i = 0; i < btns.length; i++) {
-//   btns[i].addEventListener("click", function() {
-//     var current = document.getElementsByClassName("filter-active");
-//     w3RemoveClass(current[0], "filter-active");
-//     w3AddClass(this, "filter-active");
-//   });
-// }
-
 (function() {
   "use strict";
 
@@ -64,10 +18,6 @@
       return document.querySelector(el)
     }
   }
-
-  // filterImages()
-
-
 
   /**
    * Easy event listener function
@@ -229,6 +179,36 @@
    */
   const portfolioLightbox = GLightbox({
     selector: '.portfolio-lightbox'
+  });
+
+  /**
+   * Porfolio isotope and filter
+   */
+  window.addEventListener('load', () => {
+    let portfolioContainer = select('.portfolio-container');
+    if (portfolioContainer) {
+      let portfolioIsotope = new Isotope(portfolioContainer, {
+        itemSelector: '.portfolio-item'
+      });
+
+      let portfolioFilters = select('#portfolio-flters li', true);
+
+      on('click', '#portfolio-flters li', function(e) {
+        e.preventDefault();
+        portfolioFilters.forEach(function(el) {
+          el.classList.remove('filter-active');
+        });
+        this.classList.add('filter-active');
+
+        portfolioIsotope.arrange({
+          filter: this.getAttribute('data-filter')
+        });
+        portfolioIsotope.on('arrangeComplete', function() {
+          AOS.refresh()
+        });
+      }, true);
+    }
+
   });
 
   /**
